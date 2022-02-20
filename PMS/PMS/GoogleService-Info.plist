@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>110786961363-88v0cqdhj75okp15p6e67encn7j7koim.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.110786961363-88v0cqdhj75okp15p6e67encn7j7koim</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD9L_BOcJ78Lmt_p9j5lvX1Ut9w4H4Wn7E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>110786961363</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>PolytechIG4-FLAGEUL-DAVILA.PMS</string>
+	<key>PROJECT_ID</key>
+	<string>projectawi-84b40</string>
+	<key>STORAGE_BUCKET</key>
+	<string>projectawi-84b40.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:110786961363:ios:892c5f10ed6dbbc2bf9926</string>
+</dict>
+</plist>
