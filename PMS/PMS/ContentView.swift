@@ -2,12 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var vm = IngredientsVM()
-    @State var ingredients = []
+    @StateObject var vm2 = MealVM()
     var body: some View {
-        Text("Test")
         List {
-            ForEach($vm.ingredients, id: \.id) { $ingredient in
-                Text(ingredient.name)
+            ForEach($vm2.meals, id: \.id) { $meal in
+                ForEach($meal.stageList, id: \.name) { $stg in
+                    Text(stg.description)
+                }
             }
         }
     }

@@ -20,11 +20,14 @@
 		6FC10FB927C2AEDD006CA8A9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4527C2949A002E77B5 /* Ingredient.swift */; };
 		6FC10FBA27C2AF37006CA8A9 /* PMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CCF127BE826500C9F519 /* PMSApp.swift */; };
 		6FC10FBB27C2AF38006CA8A9 /* PMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CCF127BE826500C9F519 /* PMSApp.swift */; };
-		6FC10FBF27C4CE0B006CA8A9 /* StageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC10FBE27C4CE0B006CA8A9 /* StageDTO.swift */; };
 		6FD7A8B627C2A9DF0042CE8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */; };
 		6FF6BF4327C2945E002E77B5 /* IngredientsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */; };
 		6FF6BF4627C2949A002E77B5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4527C2949A002E77B5 /* Ingredient.swift */; };
 		6FF6BF4A27C296A1002E77B5 /* IngredientDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4927C296A1002E77B5 /* IngredientDAO.swift */; };
+		B7758ED727C4D0D80073CFA3 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7758ED627C4D0D80073CFA3 /* Meal.swift */; };
+		B7758ED927C4D3040073CFA3 /* MealDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7758ED827C4D3040073CFA3 /* MealDAO.swift */; };
+		B7758EDB27C4DCFB0073CFA3 /* MealVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7758EDA27C4DCFB0073CFA3 /* MealVM.swift */; };
+		B7758EDD27C51CE60073CFA3 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7758EDC27C51CE60073CFA3 /* Stage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +58,14 @@
 		6F05CD0827BE826600C9F519 /* PMSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F05CD0C27BE826600C9F519 /* PMSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITests.swift; sourceTree = "<group>"; };
 		6F05CD0E27BE826600C9F519 /* PMSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		6FC10FBE27C4CE0B006CA8A9 /* StageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDTO.swift; sourceTree = "<group>"; };
 		6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsVM.swift; sourceTree = "<group>"; };
 		6FF6BF4527C2949A002E77B5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		6FF6BF4927C296A1002E77B5 /* IngredientDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDAO.swift; sourceTree = "<group>"; };
+		B7758ED627C4D0D80073CFA3 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		B7758ED827C4D3040073CFA3 /* MealDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDAO.swift; sourceTree = "<group>"; };
+		B7758EDA27C4DCFB0073CFA3 /* MealVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealVM.swift; sourceTree = "<group>"; };
+		B7758EDC27C51CE60073CFA3 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */,
+				B7758EDA27C4DCFB0073CFA3 /* MealVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -161,7 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				6FF6BF4527C2949A002E77B5 /* Ingredient.swift */,
-				6FC10FBE27C4CE0B006CA8A9 /* StageDTO.swift */,
+				B7758ED627C4D0D80073CFA3 /* Meal.swift */,
+				B7758EDC27C51CE60073CFA3 /* Stage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				6FF6BF4927C296A1002E77B5 /* IngredientDAO.swift */,
+				B7758ED827C4D3040073CFA3 /* MealDAO.swift */,
 			);
 			path = ModelsDAO;
 			sourceTree = "<group>";
@@ -323,7 +332,10 @@
 			files = (
 				6FF6BF4627C2949A002E77B5 /* Ingredient.swift in Sources */,
 				6FF6BF4A27C296A1002E77B5 /* IngredientDAO.swift in Sources */,
-				6FC10FBF27C4CE0B006CA8A9 /* StageDTO.swift in Sources */,
+				B7758EDB27C4DCFB0073CFA3 /* MealVM.swift in Sources */,
+				B7758EDD27C51CE60073CFA3 /* Stage.swift in Sources */,
+				B7758ED727C4D0D80073CFA3 /* Meal.swift in Sources */,
+				B7758ED927C4D3040073CFA3 /* MealDAO.swift in Sources */,
 				6FF6BF4327C2945E002E77B5 /* IngredientsVM.swift in Sources */,
 				6F05CCF427BE826500C9F519 /* ContentView.swift in Sources */,
 				6F05CCF227BE826500C9F519 /* PMSApp.swift in Sources */,
