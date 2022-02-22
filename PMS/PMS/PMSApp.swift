@@ -1,14 +1,13 @@
-//
-//  PMSApp.swift
-//  PMS
-//
-//  Created by m1 on 17/02/2022.
-//
-
 import SwiftUI
+import Firebase
 
 @main
 struct PMSApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

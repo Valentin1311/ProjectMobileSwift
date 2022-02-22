@@ -1,21 +1,14 @@
-//
-//  ContentView.swift
-//  PMS
-//
-//  Created by m1 on 17/02/2022.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var vm = IngredientsVM()
+    @State var ingredients = []
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        Text("Test")
+        List {
+            ForEach($vm.ingredients, id: \.id) { $ingredient in
+                Text(ingredient.name)
+            }
+        }
     }
 }
