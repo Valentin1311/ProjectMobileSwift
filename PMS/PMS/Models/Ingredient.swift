@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IngredientDTO : Identifiable	 {
+class IngredientDTO : Identifiable, ObservableObject {
     var id: String?
     var name: String
     var isAllergen: Bool

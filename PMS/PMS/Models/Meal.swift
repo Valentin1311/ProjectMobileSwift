@@ -9,7 +9,7 @@
 import Foundation
 
 
-class MealDTO : Identifiable {
+class MealDTO : Identifiable, ObservableObject {
     var id: String?
     var name: String
     var manager: String

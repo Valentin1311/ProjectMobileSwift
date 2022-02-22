@@ -1,14 +1,16 @@
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject var vm = IngredientsVM()
-    @StateObject var vm2 = MealVM()
+struct ContentView: View { 
     var body: some View {
-        List {
-            ForEach($vm2.meals, id: \.id) { $meal in
-                ForEach($meal.stageList, id: \.name) { $stg in
-                    Text(stg.description)
-                }
+        TabView {
+            HomePage().tabItem {
+                Label("Accueil", systemImage: "house")
+            }
+            NewFichePage().tabItem {
+                Label("Accueil", systemImage: "doc.badge.plus")
+            }
+            StockPage().tabItem {
+                Label("Accueil", systemImage: "bag")
             }
         }
     }
