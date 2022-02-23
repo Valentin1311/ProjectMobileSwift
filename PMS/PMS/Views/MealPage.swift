@@ -25,7 +25,7 @@ struct MealPage: View {
             }.padding()
             TabView(selection: $index) {
                 ForEach((0..<meal.stageList.count), id: \.self) { index in
-                    StageView(stage: meal.stageList[index])
+                    StageView(stage: meal.stageList[index], editable: false)
                  }
              }
              .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))

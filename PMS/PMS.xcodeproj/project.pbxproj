@@ -14,6 +14,15 @@
 		6F05CD0327BE826600C9F519 /* PMSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0227BE826600C9F519 /* PMSTests.swift */; };
 		6F05CD0D27BE826600C9F519 /* PMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0C27BE826600C9F519 /* PMSUITests.swift */; };
 		6F05CD0F27BE826600C9F519 /* PMSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0E27BE826600C9F519 /* PMSUITestsLaunchTests.swift */; };
+		6F90070E27C55D77007ED142 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90070D27C55D77007ED142 /* HomePage.swift */; };
+		6F90071027C55DA0007ED142 /* NewFichePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90070F27C55DA0007ED142 /* NewFichePage.swift */; };
+		6F90071227C55DAC007ED142 /* StockPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071127C55DAC007ED142 /* StockPage.swift */; };
+		6F90071527C55DDA007ED142 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071427C55DDA007ED142 /* StageView.swift */; };
+		6F90071727C56470007ED142 /* MealPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071627C56470007ED142 /* MealPage.swift */; };
+		6F90071927C568BB007ED142 /* StageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071827C568BB007ED142 /* StageDAO.swift */; };
+		6F90071B27C5827E007ED142 /* IngredientQuantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071A27C5827E007ED142 /* IngredientQuantity.swift */; };
+		6F90071D27C5837B007ED142 /* IngredientQuantityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071C27C5837B007ED142 /* IngredientQuantityDAO.swift */; };
+		6F90071F27C58A5C007ED142 /* IngredientSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90071E27C58A5B007ED142 /* IngredientSelectorView.swift */; };
 		6FA6B95627C292FD000F2D21 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA6B95527C292FD000F2D21 /* FirebaseFirestore */; };
 		6FA6B95827C292FD000F2D21 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 6FA6B95727C292FD000F2D21 /* FirebaseFirestoreSwift-Beta */; };
 		6FC10FB827C2AEDC006CA8A9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4527C2949A002E77B5 /* Ingredient.swift */; };
@@ -58,6 +67,15 @@
 		6F05CD0827BE826600C9F519 /* PMSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F05CD0C27BE826600C9F519 /* PMSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITests.swift; sourceTree = "<group>"; };
 		6F05CD0E27BE826600C9F519 /* PMSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6F90070D27C55D77007ED142 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		6F90070F27C55DA0007ED142 /* NewFichePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFichePage.swift; sourceTree = "<group>"; };
+		6F90071127C55DAC007ED142 /* StockPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockPage.swift; sourceTree = "<group>"; };
+		6F90071427C55DDA007ED142 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
+		6F90071627C56470007ED142 /* MealPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPage.swift; sourceTree = "<group>"; };
+		6F90071827C568BB007ED142 /* StageDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDAO.swift; sourceTree = "<group>"; };
+		6F90071A27C5827E007ED142 /* IngredientQuantity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientQuantity.swift; sourceTree = "<group>"; };
+		6F90071C27C5837B007ED142 /* IngredientQuantityDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientQuantityDAO.swift; sourceTree = "<group>"; };
+		6F90071E27C58A5B007ED142 /* IngredientSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSelectorView.swift; sourceTree = "<group>"; };
 		6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsVM.swift; sourceTree = "<group>"; };
 		6FF6BF4527C2949A002E77B5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -118,6 +136,7 @@
 		6F05CCF027BE826500C9F519 /* PMS */ = {
 			isa = PBXGroup;
 			children = (
+				6F90070C27C55D60007ED142 /* Views */,
 				6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */,
 				6FF6BF4727C29684002E77B5 /* Helpers */,
 				6FF6BF4427C29491002E77B5 /* Models */,
@@ -155,6 +174,27 @@
 			path = PMSUITests;
 			sourceTree = "<group>";
 		};
+		6F90070C27C55D60007ED142 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F90071327C55DC9007ED142 /* Components */,
+				6F90070D27C55D77007ED142 /* HomePage.swift */,
+				6F90070F27C55DA0007ED142 /* NewFichePage.swift */,
+				6F90071127C55DAC007ED142 /* StockPage.swift */,
+				6F90071627C56470007ED142 /* MealPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6F90071327C55DC9007ED142 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6F90071427C55DDA007ED142 /* StageView.swift */,
+				6F90071E27C58A5B007ED142 /* IngredientSelectorView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		6FF6BF4127C29445002E77B5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +210,7 @@
 				6FF6BF4527C2949A002E77B5 /* Ingredient.swift */,
 				B7758ED627C4D0D80073CFA3 /* Meal.swift */,
 				B7758EDC27C51CE60073CFA3 /* Stage.swift */,
+				6F90071A27C5827E007ED142 /* IngredientQuantity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +228,8 @@
 			children = (
 				6FF6BF4927C296A1002E77B5 /* IngredientDAO.swift */,
 				B7758ED827C4D3040073CFA3 /* MealDAO.swift */,
+				6F90071827C568BB007ED142 /* StageDAO.swift */,
+				6F90071C27C5837B007ED142 /* IngredientQuantityDAO.swift */,
 			);
 			path = ModelsDAO;
 			sourceTree = "<group>";
@@ -331,13 +374,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FF6BF4627C2949A002E77B5 /* Ingredient.swift in Sources */,
+				6F90071527C55DDA007ED142 /* StageView.swift in Sources */,
+				6F90071027C55DA0007ED142 /* NewFichePage.swift in Sources */,
 				6FF6BF4A27C296A1002E77B5 /* IngredientDAO.swift in Sources */,
 				B7758EDB27C4DCFB0073CFA3 /* MealVM.swift in Sources */,
+				6F90071D27C5837B007ED142 /* IngredientQuantityDAO.swift in Sources */,
+				6F90071F27C58A5C007ED142 /* IngredientSelectorView.swift in Sources */,
 				B7758EDD27C51CE60073CFA3 /* Stage.swift in Sources */,
 				B7758ED727C4D0D80073CFA3 /* Meal.swift in Sources */,
+				6F90071727C56470007ED142 /* MealPage.swift in Sources */,
+				6F90070E27C55D77007ED142 /* HomePage.swift in Sources */,
+				6F90071227C55DAC007ED142 /* StockPage.swift in Sources */,
 				B7758ED927C4D3040073CFA3 /* MealDAO.swift in Sources */,
+				6F90071B27C5827E007ED142 /* IngredientQuantity.swift in Sources */,
 				6FF6BF4327C2945E002E77B5 /* IngredientsVM.swift in Sources */,
 				6F05CCF427BE826500C9F519 /* ContentView.swift in Sources */,
+				6F90071927C568BB007ED142 /* StageDAO.swift in Sources */,
 				6F05CCF227BE826500C9F519 /* PMSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

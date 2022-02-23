@@ -11,7 +11,7 @@ import SwiftUI
 struct StageView: View {
     @StateObject var stage: StageDTO
     @State var nbIngredientSelectors = 0
-    var editable : Bool = true
+    var editable : Bool 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Intitulé").font(.headline).isHidden(!editable)
@@ -23,7 +23,7 @@ struct StageView: View {
                     nbIngredientSelectors += 1
                 }) {
                     Image(systemName: "pencil.tip.crop.circle.badge.plus").imageScale(.large).foregroundColor(.accentColor)
-                }
+                }.isHidden(!editable)
             }
             VStack(alignment: .leading, spacing: 2) {
                 if editable {

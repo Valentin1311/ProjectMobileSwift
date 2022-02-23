@@ -7,10 +7,10 @@ struct ContentView: View {
                 Label("Accueil", systemImage: "house")
             }
             NewFichePage().tabItem {
-                Label("Accueil", systemImage: "doc.badge.plus")
+                Label("Créer", systemImage: "doc.badge.plus")
             }
             StockPage().tabItem {
-                Label("Accueil", systemImage: "bag")
+                Label("Stock", systemImage: "bag")
             }
         }
     }
