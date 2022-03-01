@@ -18,12 +18,12 @@ class MealDTO : Identifiable, ObservableObject {
     var stageList: [StageDTO]
     var matS: String?
     var matD: String?
-    var coefVenteHT: String?
-    var coefVenteTTC: String?
-    var coutHFluide: String?
-    var coutHMoyen: String?
+    var coefVenteHT: Int?
+    var coefVenteTTC: Int?
+    var coutHFluide: Int?
+    var coutHMoyen: Int?
 
-    init(id:String?, name: String, manager: String, category: String, nbGuests: Int, stageList: [StageDTO], matS: String?, matD: String?, coefVenteHT: String?, coefVenteTTC: String?, coutHFluide: String?, coutHMoyen: String?) {
+    init(id:String?, name: String, manager: String, category: String, nbGuests: Int, stageList: [StageDTO], matS: String?, matD: String?, coefVenteHT: Int?, coefVenteTTC: Int?, coutHFluide: Int?, coutHMoyen: Int?) {
         self.id = id
         self.name = name
         self.manager = manager

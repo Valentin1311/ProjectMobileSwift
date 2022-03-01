@@ -1,8 +1,9 @@
 import Foundation
 import FirebaseFirestore
+import Combine
 
 class IngredientsVM : ObservableObject{
-    @Published var ingredients: [IngredientDTO] = []
+    @Published var ingredients: [IngredientDTO] = [] 
     private let firestore = Firestore.firestore()
     var data : QuerySnapshot? 
     

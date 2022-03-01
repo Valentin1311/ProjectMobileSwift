@@ -10,7 +10,13 @@ import Foundation
 class IngredientDTO : Identifiable, ObservableObject {
     var id: String?
     var name: String
-    var isAllergen: Bool
+    var isAllergen: Bool {
+        didSet{
+            if (isAllergen == false) {
+                allergenCategory = nil
+            }
+        }
+    }
     var category: String
     var price: String
     var unit: String

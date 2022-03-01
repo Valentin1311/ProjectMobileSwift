@@ -11,7 +11,7 @@ struct ContentView: View {
             }
             StockPage().tabItem {
                 Label("Stock", systemImage: "bag")
-            }
-        }
+            } 
+        }.background(.red)
     }
 }

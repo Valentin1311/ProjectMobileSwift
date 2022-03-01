@@ -1,11 +1,3 @@
-//
-//  HomePage.swift
-//  PMS
-//
-//  Created by m1 on 22/02/2022.
-//  Copyright © 2022 	. All rights reserved.
-//
-
 import SwiftUI
 
 struct HomePage: View {
@@ -16,9 +8,15 @@ struct HomePage: View {
                 ForEach($vm.meals, id: \.id) { $meal in
                     NavigationLink(destination: MealPage(meal: $meal)) {
                         Text(meal.name)
-                    }.navigationTitle("Fiches techniques")
-                }
-            }
+                    }.navigationBarTitle("Fiches techniques", displayMode: .inline)
+                }.onDelete(perform: delete)
+            }.toolbar { EditButton() }
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        offsets.forEach { (i) in
+            MealDAO().deleteMeal(meal: vm.meals[i])
         }
     }
 } 

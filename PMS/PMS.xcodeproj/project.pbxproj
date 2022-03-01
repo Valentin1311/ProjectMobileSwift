@@ -29,6 +29,14 @@
 		6FC10FB927C2AEDD006CA8A9 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4527C2949A002E77B5 /* Ingredient.swift */; };
 		6FC10FBA27C2AF37006CA8A9 /* PMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CCF127BE826500C9F519 /* PMSApp.swift */; };
 		6FC10FBB27C2AF38006CA8A9 /* PMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CCF127BE826500C9F519 /* PMSApp.swift */; };
+		6FCD914827C665080045AAB7 /* meat.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCD914727C665070045AAB7 /* meat.png */; };
+		6FCD914A27C6C16B0045AAB7 /* NewFiche2Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD914927C6C16B0045AAB7 /* NewFiche2Page.swift */; };
+		6FCD914C27C6EBCC0045AAB7 /* DetailledStockPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD914B27C6EBCC0045AAB7 /* DetailledStockPage.swift */; };
+		6FCD914E27CC26250045AAB7 /* StagePageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD914D27CC26250045AAB7 /* StagePageVM.swift */; };
+		6FCD915027CD10580045AAB7 /* ShortIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD914F27CD10580045AAB7 /* ShortIngredientView.swift */; };
+		6FCD915227CD8AB30045AAB7 /* NewIngredientPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD915127CD8AB30045AAB7 /* NewIngredientPage.swift */; };
+		6FCD915427CD938D0045AAB7 /* NewIngredientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD915327CD938D0045AAB7 /* NewIngredientVM.swift */; };
+		6FCD915627CE53CD0045AAB7 /* NewFichePage2VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD915527CE53CD0045AAB7 /* NewFichePage2VM.swift */; };
 		6FD7A8B627C2A9DF0042CE8D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */; };
 		6FF6BF4327C2945E002E77B5 /* IngredientsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */; };
 		6FF6BF4627C2949A002E77B5 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF6BF4527C2949A002E77B5 /* Ingredient.swift */; };
@@ -76,6 +84,14 @@
 		6F90071A27C5827E007ED142 /* IngredientQuantity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientQuantity.swift; sourceTree = "<group>"; };
 		6F90071C27C5837B007ED142 /* IngredientQuantityDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientQuantityDAO.swift; sourceTree = "<group>"; };
 		6F90071E27C58A5B007ED142 /* IngredientSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSelectorView.swift; sourceTree = "<group>"; };
+		6FCD914727C665070045AAB7 /* meat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meat.png; path = ../../../../Downloads/meat.png; sourceTree = "<group>"; };
+		6FCD914927C6C16B0045AAB7 /* NewFiche2Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFiche2Page.swift; sourceTree = "<group>"; };
+		6FCD914B27C6EBCC0045AAB7 /* DetailledStockPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailledStockPage.swift; sourceTree = "<group>"; };
+		6FCD914D27CC26250045AAB7 /* StagePageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagePageVM.swift; sourceTree = "<group>"; };
+		6FCD914F27CD10580045AAB7 /* ShortIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortIngredientView.swift; sourceTree = "<group>"; };
+		6FCD915127CD8AB30045AAB7 /* NewIngredientPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIngredientPage.swift; sourceTree = "<group>"; };
+		6FCD915327CD938D0045AAB7 /* NewIngredientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewIngredientVM.swift; sourceTree = "<group>"; };
+		6FCD915527CE53CD0045AAB7 /* NewFichePage2VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFichePage2VM.swift; sourceTree = "<group>"; };
 		6FD7A8B527C2A9DF0042CE8D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsVM.swift; sourceTree = "<group>"; };
 		6FF6BF4527C2949A002E77B5 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -144,6 +160,7 @@
 				6F05CCF127BE826500C9F519 /* PMSApp.swift */,
 				6F05CCF327BE826500C9F519 /* ContentView.swift */,
 				6F05CCF527BE826600C9F519 /* Assets.xcassets */,
+				6FCD914727C665070045AAB7 /* meat.png */,
 				6F05CCF727BE826600C9F519 /* Preview Content */,
 			);
 			path = PMS;
@@ -182,6 +199,9 @@
 				6F90070F27C55DA0007ED142 /* NewFichePage.swift */,
 				6F90071127C55DAC007ED142 /* StockPage.swift */,
 				6F90071627C56470007ED142 /* MealPage.swift */,
+				6FCD914927C6C16B0045AAB7 /* NewFiche2Page.swift */,
+				6FCD914B27C6EBCC0045AAB7 /* DetailledStockPage.swift */,
+				6FCD915127CD8AB30045AAB7 /* NewIngredientPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +211,7 @@
 			children = (
 				6F90071427C55DDA007ED142 /* StageView.swift */,
 				6F90071E27C58A5B007ED142 /* IngredientSelectorView.swift */,
+				6FCD914F27CD10580045AAB7 /* ShortIngredientView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -200,6 +221,9 @@
 			children = (
 				6FF6BF4227C2945E002E77B5 /* IngredientsVM.swift */,
 				B7758EDA27C4DCFB0073CFA3 /* MealVM.swift */,
+				6FCD914D27CC26250045AAB7 /* StagePageVM.swift */,
+				6FCD915327CD938D0045AAB7 /* NewIngredientVM.swift */,
+				6FCD915527CE53CD0045AAB7 /* NewFichePage2VM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -348,6 +372,7 @@
 			files = (
 				6F05CCF927BE826600C9F519 /* Preview Assets.xcassets in Resources */,
 				6F05CCF627BE826600C9F519 /* Assets.xcassets in Resources */,
+				6FCD914827C665080045AAB7 /* meat.png in Resources */,
 				6FD7A8B627C2A9DF0042CE8D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,22 +398,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FCD915027CD10580045AAB7 /* ShortIngredientView.swift in Sources */,
 				6FF6BF4627C2949A002E77B5 /* Ingredient.swift in Sources */,
 				6F90071527C55DDA007ED142 /* StageView.swift in Sources */,
 				6F90071027C55DA0007ED142 /* NewFichePage.swift in Sources */,
 				6FF6BF4A27C296A1002E77B5 /* IngredientDAO.swift in Sources */,
 				B7758EDB27C4DCFB0073CFA3 /* MealVM.swift in Sources */,
+				6FCD915427CD938D0045AAB7 /* NewIngredientVM.swift in Sources */,
+				6FCD915227CD8AB30045AAB7 /* NewIngredientPage.swift in Sources */,
 				6F90071D27C5837B007ED142 /* IngredientQuantityDAO.swift in Sources */,
 				6F90071F27C58A5C007ED142 /* IngredientSelectorView.swift in Sources */,
 				B7758EDD27C51CE60073CFA3 /* Stage.swift in Sources */,
 				B7758ED727C4D0D80073CFA3 /* Meal.swift in Sources */,
 				6F90071727C56470007ED142 /* MealPage.swift in Sources */,
+				6FCD914E27CC26250045AAB7 /* StagePageVM.swift in Sources */,
 				6F90070E27C55D77007ED142 /* HomePage.swift in Sources */,
 				6F90071227C55DAC007ED142 /* StockPage.swift in Sources */,
 				B7758ED927C4D3040073CFA3 /* MealDAO.swift in Sources */,
+				6FCD915627CE53CD0045AAB7 /* NewFichePage2VM.swift in Sources */,
 				6F90071B27C5827E007ED142 /* IngredientQuantity.swift in Sources */,
 				6FF6BF4327C2945E002E77B5 /* IngredientsVM.swift in Sources */,
 				6F05CCF427BE826500C9F519 /* ContentView.swift in Sources */,
+				6FCD914C27C6EBCC0045AAB7 /* DetailledStockPage.swift in Sources */,
+				6FCD914A27C6C16B0045AAB7 /* NewFiche2Page.swift in Sources */,
 				6F90071927C568BB007ED142 /* StageDAO.swift in Sources */,
 				6F05CCF227BE826500C9F519 /* PMSApp.swift in Sources */,
 			);
