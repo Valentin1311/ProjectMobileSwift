@@ -50,6 +50,13 @@ class IngredientDAO {
     }
     
     func deleteIngredient(ing : IngredientDTO) {
-        // TODO
+        if let documentId = ing.id {
+            do {
+                try firestore.collection("Ingredients").document(documentId).delete()
+            }
+            catch {
+              print(error)
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-class NewIngredientVM : ObservableObject, ingredientDelegate {
+class ModifIngredientVM : ObservableObject, ingredientDelegate {
     
     private var newIngredient : IngredientDTO
     private var ingredientDAO = IngredientDAO()
@@ -41,8 +41,8 @@ class NewIngredientVM : ObservableObject, ingredientDelegate {
         }
     }
     
-    init(){
-        newIngredient = IngredientDTO(id: nil, name: "", isAllergen: false, category: "Viandes et Volailles", price: "", unit: "", stock: 0, allergenCategory: nil)
+    init(ingredient : Binding<IngredientDTO>){
+        newIngredient = ingredient.wrappedValue
         name = newIngredient.name
         isAllergen = newIngredient.isAllergen
         category = newIngredient.category

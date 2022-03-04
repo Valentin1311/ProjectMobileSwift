@@ -8,7 +8,7 @@ struct NewIngredientPage: View {
     @State var showConfirm = false
     @State var showValidation = false
     
-    let cols = [GridItem(.flexible(), alignment: .leading), GridItem(.fixed(200),alignment: .center)]
+    let cols = [GridItem(.flexible(), alignment: .leading), GridItem(.fixed(175),alignment: .center)]
     let formatter : NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -39,9 +39,11 @@ struct NewIngredientPage: View {
                         TextField("Agar Agar", text : $vm.name)
                             .textFieldStyle(.roundedBorder).cornerRadius(5)
                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                        Text("Votre nom doit contenir au moins une lettre")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .font(.caption2)
+                        if(!vm.nameValid()){
+                            Text("Doit contenir au moins une lettre")
+                                .font(.caption2)
+                                .foregroundColor(.red)
+                        }
                     }
                     
                     Text("Catégorie")
@@ -53,14 +55,31 @@ struct NewIngredientPage: View {
                         Text("Poissons et Crustacés").tag("Poissons et Crustaces")
                     }
                     Text("Unité")
-                    TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                    VStack{
+                        TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                        if(!vm.unitValid()){
+                            Text("Doit contenir au moins une lettre")
+                                .font(.caption2)
+                                .foregroundColor(.red)
+                        }
+                    }
+                    
                     Text("Prix unitaire")
-                    TextField("11 €", text : $vm.price).textFieldStyle(.roundedBorder).cornerRadius(5)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                    VStack{
+                        TextField("11€", text : $vm.price)
+                            .textFieldStyle(.roundedBorder).cornerRadius(5)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                        if(!vm.priceValid()){
+                            Text("Doit contenir au moins un chiffre + '€'")
+                                .font(.caption2)
+                                .foregroundColor(.red)
+                        }
+                    }
                     Text("Stock actuel")
                     TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
                         .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                    
                 }.padding(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
@@ -74,10 +93,14 @@ struct NewIngredientPage: View {
                     }
                     if(vm.isAllergen == true) {
                         Text("Catégorie d'allergène")
-                        TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                            .onSubmit {
-                            print(vm.allergenCategory!)
+                        VStack{
+                            TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                            if(!vm.allergenCategoryValid()){
+                                Text("Doit contenir au moins une lettre")
+                                    .font(.caption2)
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                 }.padding(20)
@@ -96,27 +119,18 @@ struct NewIngredientPage: View {
                         showConfirm = true
                     }){
                         Image(systemName: "checkmark.circle.fill").font(.system(size : 35))
-                    }
+                    }.disabled(!vm.allFieldsAreValid())
                 }
                 Spacer()
             }.padding(15)
                 .confirmationDialog("Êtes-vous sûr de vouloir créer cet ingrédient ?", isPresented: $showConfirm, titleVisibility: .visible){
                     Button("Oui"){
-                        do{
-                            try vm.userConfirmed()
-                            showValidation = true
-                        }
-                        catch ingredientErrors.voidInputs {
-                            showEmptyAlert = true
-                        }
-                        catch{
-                            showEmptyAlert = true
-                        }
-                    }.alert(isPresented : $showEmptyAlert) {
-                        Alert(title: Text("Attention"), message: Text("Vous devez remplir tous les champs"))}
+                        vm.userConfirmed()
+                        showValidation = true
+                    }
                     Button("Non", role: .cancel){}
-                }//.alert(isPresented : $showValidation) {
-                    //Alert(title: Text("Confirmation"), message: Text("Votre ingrédient a été créé avec succès"))}
+                }.alert(isPresented : $showValidation) {
+                    Alert(title: Text("Confirmation"), message: Text("Votre ingrédient a été créé avec succès"))}
         }
     }
 }

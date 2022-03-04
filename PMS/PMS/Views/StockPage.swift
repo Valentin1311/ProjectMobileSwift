@@ -33,28 +33,28 @@ struct StockPage: View {
             List() {
                 if(sortedType == -1){
                     ForEach($ingredients, id : \.id) { ing in
-                        NavigationLink(destination : DetailledStockPage(ingredient: ing)){
+                        NavigationLink(destination : DetailledStockPage(vm : ModifIngredientVM(ingredient: ing),ingredient: ing)){
                             ShortIngredientView(ingredient: ing)
                         }
                     }
                 }
                 else if(sortedType == 1){
                     ForEach($stockASC, id : \.id) { ing in
-                        NavigationLink(destination : DetailledStockPage(ingredient: ing)){
+                        NavigationLink(destination : DetailledStockPage(vm : ModifIngredientVM(ingredient: ing), ingredient: ing)){
                             ShortIngredientView(ingredient: ing)
                         }
                     }
                 }
                 else if(sortedType == 2){
                     ForEach($stockDSC, id : \.id) { ing in
-                        NavigationLink(destination : DetailledStockPage(ingredient: ing)){
+                        NavigationLink(destination : DetailledStockPage(vm : ModifIngredientVM(ingredient: ing), ingredient: ing)){
                             ShortIngredientView(ingredient: ing)
                         }
                     }
                 }
                 else if(sortedType == 3){
                     ForEach($allergUniq, id : \.id) { ing in
-                        NavigationLink(destination : DetailledStockPage(ingredient: ing)){
+                        NavigationLink(destination : DetailledStockPage(vm : ModifIngredientVM(ingredient: ing), ingredient: ing)){
                             ShortIngredientView(ingredient: ing)
                         }
                     }

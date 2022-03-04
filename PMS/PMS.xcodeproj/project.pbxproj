@@ -14,6 +14,7 @@
 		6F05CD0327BE826600C9F519 /* PMSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0227BE826600C9F519 /* PMSTests.swift */; };
 		6F05CD0D27BE826600C9F519 /* PMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0C27BE826600C9F519 /* PMSUITests.swift */; };
 		6F05CD0F27BE826600C9F519 /* PMSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F05CD0E27BE826600C9F519 /* PMSUITestsLaunchTests.swift */; };
+		6F18EC6827D2896D00390F1B /* ModifIngredientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18EC6727D2896D00390F1B /* ModifIngredientVM.swift */; };
 		6F6B72F827CED9CA00613F21 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6B72F727CED9CA00613F21 /* Category.swift */; };
 		6F6B72FA27CFDFF400613F21 /* PrintPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6B72F927CFDFF400613F21 /* PrintPreviewView.swift */; };
 		6F78F41D27D045F600CF63D3 /* IngredientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78F41C27D045F600CF63D3 /* IngredientDelegate.swift */; };
@@ -83,6 +84,7 @@
 		6F05CD0827BE826600C9F519 /* PMSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F05CD0C27BE826600C9F519 /* PMSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITests.swift; sourceTree = "<group>"; };
 		6F05CD0E27BE826600C9F519 /* PMSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6F18EC6727D2896D00390F1B /* ModifIngredientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifIngredientVM.swift; sourceTree = "<group>"; };
 		6F6B72F727CED9CA00613F21 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		6F6B72F927CFDFF400613F21 /* PrintPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintPreviewView.swift; sourceTree = "<group>"; };
 		6F78F41C27D045F600CF63D3 /* IngredientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDelegate.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				6FCD915327CD938D0045AAB7 /* NewIngredientVM.swift */,
 				6FCD915527CE53CD0045AAB7 /* NewFichePage2VM.swift */,
 				6F78F42427D1052200CF63D3 /* MealPageVM.swift */,
+				6F18EC6727D2896D00390F1B /* ModifIngredientVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				6FCD914C27C6EBCC0045AAB7 /* DetailledStockPage.swift in Sources */,
 				6F78F42327D0F1B800CF63D3 /* ViewExtension.swift in Sources */,
 				6F6B72FA27CFDFF400613F21 /* PrintPreviewView.swift in Sources */,
+				6F18EC6827D2896D00390F1B /* ModifIngredientVM.swift in Sources */,
 				6F78F41D27D045F600CF63D3 /* IngredientDelegate.swift in Sources */,
 				6FCD914A27C6C16B0045AAB7 /* NewFiche2Page.swift in Sources */,
 				6F90071927C568BB007ED142 /* StageDAO.swift in Sources */,

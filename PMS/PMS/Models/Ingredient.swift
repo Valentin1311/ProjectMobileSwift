@@ -1,13 +1,17 @@
 import Foundation
 
 class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
+    
+    var delegate : ingredientDelegate?
    
     var id: String?
+    
     var name: String {
         didSet{
             delegate?.nameChanged(name: self.name)
         }
     }
+    
     var isAllergen: Bool {
         didSet{
             if (isAllergen == false) {
@@ -16,19 +20,42 @@ class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
             else if (isAllergen == true) {
                 allergenCategory = ""
             }
-            delegate?.isAllergenChanged(isAllergen: isAllergen)
+            delegate?.isAllergenChanged(isAllergen: self.isAllergen)
+        }
+        
+    }
+    
+    var category: String {
+        didSet{
+            delegate?.categoryChanged(category: self.category)
         }
     }
-    var category: String
-    var price: String
-    var unit: String
-    var stock : Double
+    
+    var price: String {
+        didSet{
+            delegate?.priceChanged(price: self.price)
+        }
+    }
+    
+    var unit: String {
+        didSet{
+            delegate?.unitChanged(unit: self.unit)
+        }
+    }
+    
+    var stock : Double {
+        didSet{
+            delegate?.stockChanged(stock: self.stock)
+        }
+    }
+    
     var allergenCategory: String? {
         didSet {
-            delegate?.allergenCategoryChanged(allergenCategory: allergenCategory)
+            delegate?.allergenCategoryChanged(allergenCategory: self.allergenCategory)
         }
     }
-    var delegate : ingredientDelegate?
+    
+    
     
     init(id: String?, name: String, isAllergen: Bool, category: String, price: String, unit: String, stock: Double, allergenCategory: String?) {
         self.id = id
