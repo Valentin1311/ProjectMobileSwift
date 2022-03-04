@@ -38,16 +38,13 @@ struct ShortIngredientView: View {
                         .strokeBorder(Color.green,lineWidth: 1)
                         .background(.white)
                     VStack(alignment : .center, spacing: 10){
-                        HStack {
-                            Text(String(ingredient.stock)).font(.system(size: 12.5, weight: .bold)).lineLimit(1).foregroundColor(.green)
-                            Text(String(ingredient.unit)).font(.system(size: 12.5, weight: .bold)).lineLimit(1).foregroundColor(.green)
-                        }
+                        Text(String(ingredient.stock)+" "+String(ingredient.unit)).font(.system(size: 12.5, weight: .bold)).lineLimit(1).foregroundColor(.green)
                         Text("En stock").font(.system(size: 12.5)).lineLimit(1).foregroundColor(.green)
                     }
                 }
                 else{
                     Circle()
-                        .strokeBorder(Color.green,lineWidth: 1)
+                        .strokeBorder(Color.red,lineWidth: 1)
                         .background(.white)
                     VStack(alignment : .center, spacing: 10){
                         HStack {

@@ -1,77 +1,81 @@
 import SwiftUI
 
 struct StageView: View {
-    @StateObject var stage: StageDTO
     @StateObject var vm: StagePageVM
     @State var stageIndex : Int
     var editable : Bool 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Etape n°\(stageIndex + 1)").font(.headline)
-            TextField("Intitulé", text: $stage.name).font(.title3).disabled(!editable)
-            HStack() {
-                Text("Ingrédients").font(.headline)
-                Spacer()
-                Button(action: {
-                    vm.ingredients.append(IngredientQuantityDTO(quantity: 0, id: "", name: "ss", isAllergern: false, category: "", price: "", unit: "", stock: 0, allergenCategory: ""))
-                }) {
-                    Image(systemName: "pencil.tip.crop.circle.badge.plus").imageScale(.large).foregroundColor(.accentColor)
-                }.isHidden(!editable)
-            }
-            VStack(alignment: .leading, spacing: 2) {
-                if vm.ingredients.count != 0 && editable {
-                    ForEach(vm.ingredients, id: \.id) { ingredient in
-                        IngredientSelectorView(ingredientSelected: ingredient).padding(.horizontal)
-                    }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Etape n°\(stageIndex + 1)" + (editable ? " *" : "")).font(.headline)
+                TextField("Boeuf bourgignon", text: $vm.stage.name).disabled(!editable).padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
+                HStack() {
+                    Text("Ingrédients").font(.headline)
+                    Spacer()
+                    Button(action: {
+                        vm.ingredients.append(IngredientQuantityDTO(quantity: 0, id: nil, name: "", isAllergen: false, category: "", price: "", unit: "", stock: 0, allergenCategory: nil))
+                    }) {
+                        Image(systemName: "pencil.tip.crop.circle.badge.plus").imageScale(.large).foregroundColor(.accentColor)
+                    }.isHidden(!editable)
                 }
-                else if stage.ingredients.count != 0 && !editable {
-                    ForEach(stage.ingredients, id: \.id) { ingredient in
-                        HStack() {
-                            Text(ingredient.name)
-                            Spacer()
-                            Text(String(ingredient.quantity) + " " + ingredient.unit)
+                HStack {
+                    if vm.stage.ingredients.count != 0 {
+                        if editable {
+                            ScrollView() {
+                                VStack(spacing: 10) {
+                                    if editable {
+                                        ForEach(Array(zip(vm.stage.ingredients.indices, vm.stage.ingredients)), id: \.0.self) { index, ingredient in
+                                            IngredientSelectorView(ingredient: ingredient, indexOnVm: index, vmStage: vm)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            VStack(spacing: 5) {
+                                ForEach(vm.stage.ingredients, id: \.id) { ingredient in
+                                    HStack(alignment: .center, spacing: 0) {
+                                        Text("• \(ingredient.quantity) \(ingredient.unit) \(ingredient.name)")
+                                        Spacer()
+                                    }
+                                }
+                            }
                         }
                     }
-                }
-                else {
-                    HStack() {
-                        Spacer()
-                        Text("Aucun ingrédient pour cette étape")
-                        Spacer()
+                    else {
+                        HStack() {
+                            Text("Aucun ingrédient pour cette étape")
+                            Spacer()
+                        }
                     }
-                }
-            }.padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
-            Text("Description").font(.headline)
-            HStack() {
-                if editable {
-                    TextEditor(text: $stage.description).frame(height: 200)
-                }
-                else {
-                    if let duration = stage.duration {
-                        Text(stage.description + " (\(duration)\")")
+                }.padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
+                Text("Description" + (editable ? " *" : "")).font(.headline)
+                HStack() {
+                    if editable {
+                        TextEditor(text: $vm.stage.description).frame(height: 170)
                     }
                     else {
-                        Text(stage.description + (" (temps indeterminé)"))
+                        Text(vm.stage.description)
                     }
-                }
+                    Spacer()
+                }.frame(maxWidth: .infinity).padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
+                Text("Durée (en minutes)").font(.headline)
+                HStack() {
+                    if editable {
+                        TextField("15", value: $vm.stage.duration, formatter: NumberFormatter())
+                    }
+                    else {
+                        if vm.stage.duration != "0" && vm.stage.duration != nil {
+                            Text(vm.stage.duration! + " \"")
+                        }
+                        else {
+                            Text("Temps indeterminé")
+                        }
+                    }
+                    Spacer()
+                }.frame(maxWidth: .infinity).padding().overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2)).padding(.bottom)
                 Spacer()
-            }.padding().frame(maxWidth: .infinity).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
-            Text("Durée (en minutes)").font(.headline).isHidden(!editable)
-            HStack() {
-                TextField("15", value: $stage.duration, formatter: NumberFormatter())
-            }.padding().frame(maxWidth: .infinity).overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2)).isHidden(!editable)
-            Spacer()
-        }.padding(.horizontal)
-    }
-}
-
-extension View {
-    @ViewBuilder func isHidden(_ hidden: Bool) -> some View {
-        if hidden {
-            self.hidden()
-        }
-        else {
-            self
+            }.padding(.horizontal).padding(.bottom, 20)
         }
     }
 }

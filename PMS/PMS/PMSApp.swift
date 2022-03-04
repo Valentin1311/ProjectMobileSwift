@@ -5,7 +5,8 @@ import Firebase
 struct PMSApp: App {
     
     init() {
-        FirebaseApp.configure() 
+        FirebaseApp.configure()
+        
     }
     
     var body: some Scene {

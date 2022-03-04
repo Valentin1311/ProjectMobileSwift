@@ -1,11 +1,13 @@
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import Combine
 
 class IngredientsVM : ObservableObject{
-    @Published var ingredients: [IngredientDTO] = [] 
+    @Published var ingredients: [IngredientDTO] = []
+    
     private let firestore = Firestore.firestore()
-    var data : QuerySnapshot? 
+    var data : QuerySnapshot?
     
     init() {
         Task{ 
@@ -19,7 +21,7 @@ class IngredientsVM : ObservableObject{
             guard let documents = data?.documents else { return }
             self.ingredients = documents.map {
                 (doc) -> IngredientDTO in
-                return IngredientDTO(id: doc.documentID, name: doc["name"] as? String ?? "", isAllergern: doc["isAllergern"] as? Bool ?? false, category: doc["category"] as? String ?? "", price: doc["price"] as? String ?? "", unit: doc["unit"] as? String ?? "", stock: doc["stock"] as? Double ?? 0, allergenCategory: doc["allergenCategory"] as? String ?? nil)
+                return IngredientDTO(id: doc.documentID, name: doc["name"] as? String ?? "", isAllergen: doc["isAllergern"] as? Bool ?? false, category: doc["category"] as? String ?? "", price: doc["price"] as? String ?? "", unit: doc["unit"] as? String ?? "", stock: doc["stock"] as? Double ?? 0, allergenCategory: doc["allergenCategory"] as? String ?? nil)
             }
         }
     }

@@ -1,11 +1,3 @@
-//
-//  MealPage.swift
-//  PMS
-//
-//  Created by m1 on 22/02/2022.
-//  Copyright © 2022 	. All rights reserved.
-//
-
 import SwiftUI
 
 struct MealPage: View {
@@ -14,22 +6,18 @@ struct MealPage: View {
     @State private var editClicked = false
     @State var showConfirmAlert = false
     @State var oldNbGuests = 0
+    @State var printClicked: Bool = false
+    @State var infoClicked: Bool = false
+    @StateObject var vm = MealPageVM()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Text(meal.name).font(.title2).lineLimit(1)
-                Spacer()
-                Button(action: {
-                    printFiche()
-                }) {
-                    Image(systemName: "printer").imageScale(.large).foregroundColor(.accentColor)
-                }
-            }.padding()
             TabView(selection: $index) {
                 ForEach((0..<meal.stageList.count), id: \.self) { index in
-                    StageView(stage: meal.stageList[index], vm: StagePageVM(), stageIndex: index, editable: false)
+                    StageView(vm: StagePageVM(stage: meal.stageList[index]), stageIndex: index, editable: false)
                 }
-            }.tabViewStyle(PageTabViewStyle())
+            }.tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
             .onAppear {
               setupAppearance()
             }
@@ -63,8 +51,34 @@ struct MealPage: View {
                 Spacer()
                 Text("\(index + 1)/\(meal.stageList.count)").font(.headline)
             }.padding()
-        }.onAppear {
+            NavigationLink(destination: PrintPreviewView(meal: meal), isActive: $printClicked) { EmptyView() }.navigationBarTitle(meal.name)
+            NavigationLink(destination:
+                ScrollView{
+                    VStack { MealInfoPage(meal: meal, fullDetailed: true) }
+            }, isActive: $infoClicked) { EmptyView() }.navigationBarTitle(meal.name)
+        }.padding(.vertical)
+        .toolbar {
+            HStack {
+                Button(action: {
+                    infoClicked = true
+                }) {
+                    Image(systemName: "info.circle").imageScale(.large).foregroundColor(.accentColor)
+                }
+                Button(action: {
+                    printClicked = true
+                }) {
+                    Image(systemName: "printer").imageScale(.large).foregroundColor(.accentColor)
+                }
+            }
+        }
+        .onAppear {
             oldNbGuests = meal.nbGuests
+        }.sheet(isPresented: $vm.showShareSheet) {
+            vm.pdfURL = nil
+        } content: {
+            if let pdfURL = vm.pdfURL {
+                ShareSheet(urls: [pdfURL])
+            }
         }
     }
     
@@ -78,7 +92,15 @@ struct MealPage: View {
     }
     
     func printFiche() {
-        
+        exportPDF(content: { self }, filename: meal.name) { status, url in
+            if let url = url, status {
+                vm.pdfURL = url
+                vm.showShareSheet.toggle()
+            }
+            else {
+                print("PDF failed")
+            }
+        }
     }
     
     func leftClicked() {
@@ -97,4 +119,16 @@ struct MealPage: View {
       UIPageControl.appearance().currentPageIndicatorTintColor = .black
       UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
     }
-} 
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIActivityViewController
+    var urls: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: urls, applicationActivities: nil)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}

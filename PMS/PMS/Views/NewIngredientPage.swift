@@ -1,9 +1,14 @@
 import SwiftUI
 
 struct NewIngredientPage: View {
+    
+    @Binding var shouldPopToRootView : Bool
     @StateObject var vm = NewIngredientVM()
-    @State var showAlert = false
-    let cols = [GridItem](repeating: .init(.flexible(), alignment: .leading), count: 2)
+    @State var showEmptyAlert = false
+    @State var showConfirm = false
+    @State var showValidation = false
+    
+    let cols = [GridItem(.flexible(), alignment: .leading), GridItem(.fixed(200),alignment: .center)]
     let formatter : NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -14,80 +19,104 @@ struct NewIngredientPage: View {
     var allergenBinding: Binding<String> {
             Binding<String>(
                 get: {
-                    return self.vm.newIngredient.allergenCategory ?? ""
+                    return self.vm.allergenCategory ?? ""
             },
                 set: { newString in
-                    self.vm.newIngredient.allergenCategory = newString
+                    self.vm.allergenCategory = newString
             })
-        }
+    }
     
     var body: some View {
         ScrollView{
             VStack{
                 Text("Nouvel ingrédient").frame(maxWidth : .infinity, minHeight : 35)
-                    .font(.system(size : 20)).cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                        .stroke(customBlue, lineWidth: 1))
+                    .font(.system(size : 20)).cornerRadius(0)
                     .background(.white).foregroundColor(customBlue)
-                Spacer().frame(height : 40)
-                LazyVGrid(columns: cols, spacing: 10) {
-                    Text("Nom :")
-                    TextField("", text : $vm.newIngredient.name).textFieldStyle(.roundedBorder)
-                    Text("Catégorie :")
-                    Picker("pickerType", selection: $vm.newIngredient.category){
+                Spacer().frame(height : 10)
+                LazyVGrid(columns: cols, spacing: 20) {
+                    Text("Nom")
+                    VStack{
+                        TextField("Agar Agar", text : $vm.name)
+                            .textFieldStyle(.roundedBorder).cornerRadius(5)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                        Text("Votre nom doit contenir au moins une lettre")
+                            .fixedSize(horizontal: false, vertical: true)
+                            .font(.caption2)
+                    }
+                    
+                    Text("Catégorie")
+                    Picker("pickerType", selection: $vm.category){
                         Text("Viandes et Volailles").tag("Viandes et Volailles")
                         Text("Epicerie").tag("Epicerie")
                         Text("Fruits et Légumes").tag("Fruits et Legumes")
                         Text("Crèmerie").tag("Cremerie")
                         Text("Poissons et Crustacés").tag("Poissons et Crustaces")
-                    }.onChange(of: vm.newIngredient.category, perform: { value in
-                        
-                    })
-                    Text("Unité :")
-                    TextField("", text : $vm.newIngredient.unit).textFieldStyle(.roundedBorder)
-                    Text("Prix unitaire :")
-                    TextField("", text : $vm.newIngredient.price).textFieldStyle(.roundedBorder)
-                    Text("Stock actuel :")
-                    TextField("", value : $vm.newIngredient.stock, formatter : formatter).textFieldStyle(.roundedBorder)
+                    }
+                    Text("Unité")
+                    TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                    Text("Prix unitaire")
+                    TextField("11 €", text : $vm.price).textFieldStyle(.roundedBorder).cornerRadius(5)
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                    Text("Stock actuel")
+                    TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
                 }.padding(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                     .stroke(customBlue, lineWidth: 1))
-                Spacer().frame(height : 40)
-                LazyVGrid(columns: cols, spacing: 10){
-                    Text("Présence d'allergène(s) :")
-                    Picker("pickerType", selection: $vm.newIngredient.isAllergen){
+                Spacer().frame(height : 30)
+                LazyVGrid(columns: cols, spacing: 20){
+                    Text("Présence d'allergène(s)")
+                    Picker("pickerType", selection: $vm.isAllergen){
                         Text("Oui").tag(true)
                         Text("Non").tag(false)
                     }
-                    if(vm.newIngredient.isAllergen == true) {
-                        Text("Catégorie d'allergène :")
-                        TextField("", text : allergenBinding).textFieldStyle(.roundedBorder).onSubmit {
-                            print(vm.newIngredient.allergenCategory!)
+                    if(vm.isAllergen == true) {
+                        Text("Catégorie d'allergène")
+                        TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                            .onSubmit {
+                            print(vm.allergenCategory!)
                         }
                     }
                 }.padding(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                     .stroke(customBlue, lineWidth: 1))
-                Spacer().frame(height : 65)
+                Spacer().frame(height : 50)
                 HStack{
                     Button(action : {
-                        vm.resetIngredient()
+                        shouldPopToRootView = false
                     }){
-                        Image(systemName: "arrow.clockwise").font(.system(size : 35))
+                        Image(systemName: "arrowshape.turn.up.left").font(.system(size : 35))
                     }
                     Spacer().frame(width : 50)
                     Button(action : {
-                        vm.ingredientSubmited()
+                        showConfirm = true
                     }){
                         Image(systemName: "checkmark.circle.fill").font(.system(size : 35))
                     }
                 }
                 Spacer()
             }.padding(15)
-        
+                .confirmationDialog("Êtes-vous sûr de vouloir créer cet ingrédient ?", isPresented: $showConfirm, titleVisibility: .visible){
+                    Button("Oui"){
+                        do{
+                            try vm.userConfirmed()
+                            showValidation = true
+                        }
+                        catch ingredientErrors.voidInputs {
+                            showEmptyAlert = true
+                        }
+                        catch{
+                            showEmptyAlert = true
+                        }
+                    }.alert(isPresented : $showEmptyAlert) {
+                        Alert(title: Text("Attention"), message: Text("Vous devez remplir tous les champs"))}
+                    Button("Non", role: .cancel){}
+                }//.alert(isPresented : $showValidation) {
+                    //Alert(title: Text("Confirmation"), message: Text("Votre ingrédient a été créé avec succès"))}
         }
     }
 }

@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct NewFichePage: View {
-    @State private var index = 0
-    @State var meal: MealDTO = MealDTO(id: nil, name: "d", manager: "d", category: Categories.entree.rawValue, nbGuests: 6, stageList: [StageDTO(name: "", description: "", ingredients: [], duration: nil)], matS: nil, matD: nil, coefVenteHT: nil, coefVenteTTC: nil, coutHFluide: nil, coutHMoyen: nil)
+    @State var refresh: Bool = false
+    @Binding var mainPageIndex: Int
+    @State private var NFindex = 0
+    @StateObject var meal: MealDTO = MealDTO(id: nil, name: "", manager: "", category: Categories.entree.rawValue, nbGuests: 0, stageList: [StageDTO(name: "", description: "", ingredients: [], duration: nil)], matS: nil, matD: nil, coefVenteHT: nil, coefVenteTTC: nil, coutHFluide: nil, coutHMoyen: nil)
     @State var swipeEnabled = false
     @State var showAlert = false
     var body: some View {
@@ -14,15 +16,15 @@ struct NewFichePage: View {
                       Text("1")
                     }.frame(width: 40, height: 40)
                     ZStack {
-                        Circle().stroke(changeColor2(color: index), lineWidth: 4)
+                        Circle().stroke(changeColor2(color: NFindex), lineWidth: 4)
                       Text("2")
                     }.frame(width: 40, height: 40)
                     ZStack {
-                        Circle().stroke(changeColor3(color: index), lineWidth: 4)
+                        Circle().stroke(changeColor3(color: NFindex), lineWidth: 4)
                       Text("3")
                     }.frame(width: 40, height: 40)
                 }
-                TabView(selection: $index) {
+                TabView(selection: $NFindex) {
                     ForEach((0..<3), id: \.self) { index in
                         TabsView(meal: meal, index: index)
                             .padding(.horizontal, 30)
@@ -31,37 +33,37 @@ struct NewFichePage: View {
                             .gesture(swipeEnabled ? nil : DragGesture())
                     }
                     
-                 }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                 }
                 Spacer()
                 HStack() {
                     Button(action: {
-                        if index != 0 { index -= 1 }
+                        if NFindex != 0 { NFindex -= 1 }
                     }) {
                         Text("Précédent")
-                    }.isHidden(index == 0)
+                    }.isHidden(NFindex == 0)
                     Spacer()
                     Button(action: {
-                        if index == 0 {
+                        if NFindex == 0 {
                             if meal.name != "" && meal.manager != "" && meal.nbGuests != 0 {
                                 showAlert = false
-                                index += 1
+                                NFindex += 1
                             }
                             else {
                                 showAlert = true
                             }
                         }
-                        else if index == 1 {
-                            index += 1
+                        else if NFindex == 1 {
+                            NFindex += 1
                         }
                     }) {
-                        if index == 0 {
+                        if NFindex == 0 {
                             Text("Suivant")
                         }
-                        else if index == 1 {
+                        else if NFindex == 1 {
                             Text(meal.matS != "" || meal.matD != "" ? "Suivant" : "Ignorer")
                         }
                         else {
-                            NavigationLink(destination: NewFiche2Page(meal: meal), isActive: !$showAlert) {
+                            NavigationLink(destination: NewFiche2Page(mainPageIndex: $mainPageIndex, NFindex: $NFindex, meal: meal), isActive: !$showAlert) {
                                 Text("Suivant")
                             }
                         }
@@ -75,7 +77,7 @@ struct NewFichePage: View {
     
     func changeColor2(color: Int) -> Color
     {
-        if(index >= 1)
+        if(NFindex >= 1)
         {
             return Color.green;
         }
@@ -84,7 +86,7 @@ struct NewFichePage: View {
     
     func changeColor3(color: Int) -> Color
     {
-        if(index >= 2)
+        if(NFindex >= 2)
         {
             return Color.green;
         }
