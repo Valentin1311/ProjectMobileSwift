@@ -22,7 +22,6 @@ class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
             }
             delegate?.isAllergenChanged(isAllergen: self.isAllergen)
         }
-        
     }
     
     var category: String {

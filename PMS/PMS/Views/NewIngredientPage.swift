@@ -65,13 +65,13 @@ struct NewIngredientPage: View {
                         }
                     }
                     
-                    Text("Prix unitaire")
+                    Text("Prix\nunitaire")
                     VStack{
                         TextField("11€", text : $vm.price)
                             .textFieldStyle(.roundedBorder).cornerRadius(5)
                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
                         if(!vm.priceValid()){
-                            Text("Doit contenir au moins un chiffre + '€'")
+                            Text("Doit contenir au moins un chiffre et le signe '€'")
                                 .font(.caption2)
                                 .foregroundColor(.red)
                         }

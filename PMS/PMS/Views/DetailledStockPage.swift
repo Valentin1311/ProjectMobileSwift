@@ -2,11 +2,13 @@ import SwiftUI
 
 struct DetailledStockPage: View {
     
-    @StateObject var vm : ModifIngredientVM
+    @ObservedObject var vm : ModifIngredientVM
     @Binding var ingredient : IngredientDTO
-    @State var showEmptyAlert = false
-    @State var showConfirm = false
-    @State var showValidation = false
+    @State var editClicked = false
+    @State var showModifConfirm = false
+    @State var showDeleteConfirm = false
+    @State var showDeleteValidation = false
+    @State var ingredientDeleted = false
     
     let cols = [GridItem(.flexible(), alignment: .leading), GridItem(.fixed(175),alignment: .center)]
     let formatter : NumberFormatter = {
@@ -28,104 +30,171 @@ struct DetailledStockPage: View {
     
     var body: some View {
         ScrollView{
-            VStack{
-                Text("Fiche ingrédient").frame(maxWidth : .infinity, minHeight : 35)
-                    .font(.system(size : 20)).cornerRadius(0)
-                    .background(.white).foregroundColor(customBlue)
-                Spacer().frame(height : 10)
-                LazyVGrid(columns: cols, spacing: 20) {
-                    Text("Nom")
-                    VStack{
-                        TextField("Agar Agar", text : $vm.name)
-                            .textFieldStyle(.roundedBorder).cornerRadius(5)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                        if(!vm.nameValid()){
-                            Text("Doit contenir au moins une lettre")
-                                .font(.caption2)
-                                .foregroundColor(.red)
-                        }
-                    }
-                    
-                    Text("Catégorie")
-                    Picker("pickerType", selection: $vm.category){
-                        Text("Viandes et Volailles").tag("Viandes et Volailles")
-                        Text("Epicerie").tag("Epicerie")
-                        Text("Fruits et Légumes").tag("Fruits et Legumes")
-                        Text("Crèmerie").tag("Cremerie")
-                        Text("Poissons et Crustacés").tag("Poissons et Crustaces")
-                    }
-                    Text("Unité")
-                    VStack{
-                        TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                        if(!vm.unitValid()){
-                            Text("Doit contenir au moins une lettre")
-                                .font(.caption2)
-                                .foregroundColor(.red)
-                        }
-                    }
-                    
-                    Text("Prix unitaire")
-                    VStack{
-                        TextField("11€", text : $vm.price)
-                            .textFieldStyle(.roundedBorder).cornerRadius(5)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                        if(!vm.priceValid()){
-                            Text("Doit contenir au moins un chiffre + '€'")
-                                .font(.caption2)
-                                .foregroundColor(.red)
-                        }
-                    }
-                    Text("Stock actuel")
-                    TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                    
-                }.padding(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                    .stroke(customBlue, lineWidth: 1))
-                Spacer().frame(height : 30)
-                LazyVGrid(columns: cols, spacing: 20){
-                    Text("Présence d'allergène(s)")
-                    Picker("pickerType", selection: $vm.isAllergen){
-                        Text("Oui").tag(true)
-                        Text("Non").tag(false)
-                    }
-                    if(vm.isAllergen == true) {
-                        Text("Catégorie d'allergène")
+            if(!ingredientDeleted){
+                VStack{
+                    Text("Fiche ingrédient").frame(maxWidth : .infinity, minHeight : 35)
+                        .font(.system(size : 20)).cornerRadius(0)
+                        .background(.white).foregroundColor(customBlue)
+                    Spacer().frame(height : 10)
+                    LazyVGrid(columns: cols, spacing: 20) {
+                        Text("Nom")
                         VStack{
-                            TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
-                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
-                            if(!vm.allergenCategoryValid()){
+                            if(editClicked){
+                                TextField("Agar Agar", text : $vm.name)
+                                    .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                                    .disabled(!editClicked)
+                            }
+                            else{
+                                TextField("Agar Agar", text : $vm.name)
+                                    .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .disabled(!editClicked)
+                            }
+                            if(!vm.nameValid() && editClicked){
                                 Text("Doit contenir au moins une lettre")
                                     .font(.caption2)
                                     .foregroundColor(.red)
                             }
                         }
+                        Text("Catégorie")
+                        Picker("pickerType", selection: $vm.category){
+                            Text("Viandes et Volailles").tag("Viandes et Volailles")
+                            Text("Epicerie").tag("Epicerie")
+                            Text("Fruits et Légumes").tag("Fruits et Legumes")
+                            Text("Crèmerie").tag("Cremerie")
+                            Text("Poissons et Crustacés").tag("Poissons et Crustaces")
+                        }.disabled(!editClicked)
+                        Text("Unité")
+                        VStack{
+                            if(editClicked){
+                                TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                                    .disabled(!editClicked)
+                            }
+                            else{
+                                TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .disabled(!editClicked)
+                            }
+                            if(!vm.unitValid() && editClicked){
+                                Text("Doit contenir au moins une lettre")
+                                    .font(.caption2)
+                                    .foregroundColor(.red)
+                            }
+                        }
+                        Text("Prix\nunitaire")
+                        VStack{
+                            if(editClicked){
+                                TextField("11€", text : $vm.price)
+                                    .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                                    .disabled(!editClicked)
+                            }
+                            else{
+                                TextField("11€", text : $vm.price)
+                                    .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .disabled(!editClicked)
+                            }
+                            if(!vm.priceValid() && editClicked){
+                                Text("Doit contenir au moins un chiffre et le signe '€'")
+                                    .font(.caption2)
+                                    .foregroundColor(.red)
+                            }
+                        }
+                        Text("Stock actuel")
+                        if(editClicked){
+                            TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                                .disabled(!editClicked)
+                        }
+                        else{
+                            TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                .disabled(!editClicked)
+                            
+                        }  
+                    }.padding(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                        .stroke(customBlue, lineWidth: 1))
+                    Spacer().frame(height : 30)
+                    LazyVGrid(columns: cols, spacing: 20){
+                        Text("Présence d'allergène(s)")
+                        Picker("pickerType", selection: $vm.isAllergen){
+                            Text("Oui").tag(true)
+                            Text("Non").tag(false)
+                        }.disabled(!editClicked)
+                        if(vm.isAllergen == true) {
+                            Text("Catégorie d'allergène")
+                            VStack{
+                                if(editClicked){
+                                    TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                                        .disabled(!editClicked)
+                                }
+                                else{
+                                    TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                        .disabled(!editClicked)
+                                }
+                                if(!vm.allergenCategoryValid() && editClicked){
+                                    Text("Doit contenir au moins une lettre")
+                                        .font(.caption2)
+                                        .foregroundColor(.red)
+                                }
+                            }
+                        }
+                    }.padding(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                        .stroke(customBlue, lineWidth: 1))
+                    Spacer().frame(height : 50)
+                    HStack{
+                        if(!editClicked){
+                            Button(action : {
+                                showDeleteConfirm = true
+                            }){
+                                Image(systemName: "trash").font(.system(size : 35)).foregroundColor(.red)
+                            }.confirmationDialog("Êtes-vous sûr de vouloir supprimer cet ingrédient ?", isPresented: $showDeleteConfirm, titleVisibility: .visible){
+                                Button("Oui"){
+                                    vm.userDeleteConfirmed()
+                                    showDeleteValidation = true
+                                    ingredientDeleted = true
+                                }
+                                Button("Non", role: .cancel){}
+                            }
+                            Spacer().frame(width : 40)
+                            Button(action : {
+                                editClicked = true
+                            }){
+                                Image(systemName: "pencil").font(.system(size : 35))
+                            }
+                        }
+                        else {
+                            //Button(action : {
+                              //  vm.resetIngredient(ingredient: ingredient)
+                                //editClicked = false
+                            //}){
+                              //  Image(systemName: "plus").font(.system(size : 35)).rotationEffect(.degrees(-45)).foregroundColor(.gray)
+                            //}.disabled(!vm.allFieldsAreValid())
+                            //Spacer().frame(width : 40)
+                            Button(action : {
+                                showModifConfirm = true
+                            }){
+                                Image(systemName: "checkmark.circle.fill").font(.system(size : 35))
+                            }.disabled(!vm.allFieldsAreValid())
+                                .confirmationDialog("Voulez-vous vraiment enregistrer vos modifications ?", isPresented: $showModifConfirm, titleVisibility: .visible){
+                                    Button("Oui"){
+                                        vm.userConfirmed()
+                                        editClicked = false
+                                    }
+                                    Button("Non", role: .cancel){}
+                                }
+                        }
                     }
-                }.padding(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                    .stroke(customBlue, lineWidth: 1))
-                Spacer().frame(height : 50)
-                HStack{
-                    Spacer().frame(width : 50)
-                    Button(action : {
-                        showConfirm = true
-                    }){
-                        Image(systemName: "checkmark.circle.fill").font(.system(size : 35))
-                    }.disabled(!vm.allFieldsAreValid())
-                }
-                Spacer()
-            }.padding(15)
-                .confirmationDialog("Êtes-vous sûr de vouloir créer cet ingrédient ?", isPresented: $showConfirm, titleVisibility: .visible){
-                    Button("Oui"){
-                        vm.userConfirmed()
-                        showValidation = true
-                    }
-                    Button("Non", role: .cancel){}
-                }.alert(isPresented : $showValidation) {
-                    Alert(title: Text("Confirmation"), message: Text("Votre ingrédient a été créé avec succès"))}
+                    Spacer()
+                }.padding(15)
+            }
+            
         }
+        .alert(isPresented : $showDeleteValidation) {
+            Alert(title: Text("Suppression effectuée"), message: Text("Veuillez revenir à l'écran principal"))}
     }
 }

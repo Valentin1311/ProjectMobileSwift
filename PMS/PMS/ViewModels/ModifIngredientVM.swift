@@ -2,7 +2,7 @@ import Foundation
 
 class ModifIngredientVM : ObservableObject, ingredientDelegate {
     
-    private var newIngredient : IngredientDTO
+    public var newIngredient : IngredientDTO
     private var ingredientDAO = IngredientDAO()
     
     @Published var name : String {
@@ -41,8 +41,8 @@ class ModifIngredientVM : ObservableObject, ingredientDelegate {
         }
     }
     
-    init(ingredient : Binding<IngredientDTO>){
-        newIngredient = ingredient.wrappedValue
+    init(ingredient : IngredientDTO){
+        newIngredient = ingredient
         name = newIngredient.name
         isAllergen = newIngredient.isAllergen
         category = newIngredient.category
@@ -138,16 +138,20 @@ class ModifIngredientVM : ObservableObject, ingredientDelegate {
     
     func userConfirmed() {
         self.ingredientDAO.updateOrAddIngredient(ing: self.newIngredient)
-        self.resetIngredient()
     }
     
-    func resetIngredient() {
-        name = ""
-        isAllergen = false
-        category = "Viandes et Volailles"
-        price = ""
-        unit = ""
-        stock = 0
-        allergenCategory = nil
+    func userDeleteConfirmed() {
+        self.ingredientDAO.deleteIngredient(ing: self.newIngredient)
     }
+    
+    func resetIngredient(ingredient : IngredientDTO) {
+        self.name = ingredient.name
+        self.category = ingredient.category
+        self.unit = ingredient.unit
+        self.price = ingredient.price
+        self.stock = ingredient.stock
+        self.isAllergen = ingredient.isAllergen
+        self.allergenCategory = ingredient.allergenCategory
+    }
+    
 }
