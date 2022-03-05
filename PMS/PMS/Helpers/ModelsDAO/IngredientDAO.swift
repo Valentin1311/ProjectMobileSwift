@@ -4,7 +4,7 @@ import FirebaseFirestore
 class IngredientDAO {
     private let firestore = Firestore.firestore()
     
-    func getIngredients(documents : [QueryDocumentSnapshot]) -> [IngredientDTO] {
+    func mapIngredients(documents : [QueryDocumentSnapshot]) -> [IngredientDTO] {
         return documents.map {
             (doc) -> IngredientDTO in
             return self.jsonToIngredient(doc: doc)

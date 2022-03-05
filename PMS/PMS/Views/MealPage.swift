@@ -8,6 +8,7 @@ struct MealPage: View {
     @State var oldNbGuests = 0
     @State var printClicked: Bool = false
     @State var infoClicked: Bool = false
+    @State var etiquetteClicked: Bool = false
     @StateObject var vm = MealPageVM()
     
     var body: some View {
@@ -52,6 +53,7 @@ struct MealPage: View {
                 Text("\(index + 1)/\(meal.stageList.count)").font(.headline)
             }.padding()
             NavigationLink(destination: PrintPreviewView(meal: meal), isActive: $printClicked) { EmptyView() }.navigationBarTitle(meal.name)
+            NavigationLink(destination: EtiquettePreviewView(meal: meal), isActive: $etiquetteClicked) { EmptyView() }.navigationBarTitle(meal.name)
             NavigationLink(destination:
                 ScrollView{
                     VStack { MealInfoPage(meal: meal, fullDetailed: true) }
@@ -63,6 +65,11 @@ struct MealPage: View {
                     infoClicked = true
                 }) {
                     Image(systemName: "info.circle").imageScale(.large).foregroundColor(.accentColor)
+                }
+                Button(action: {
+                    etiquetteClicked = true
+                }) {
+                    Image(systemName: "list.bullet.rectangle").imageScale(.large).foregroundColor(.accentColor)
                 }
                 Button(action: {
                     printClicked = true

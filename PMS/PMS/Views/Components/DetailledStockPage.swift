@@ -1,14 +1,16 @@
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct DetailledStockPage: View {
     
     @ObservedObject var vm : ModifIngredientVM
-    @Binding var ingredient : IngredientDTO
+    let ingredientOG : IngredientDTO
     @State var editClicked = false
     @State var showModifConfirm = false
     @State var showDeleteConfirm = false
     @State var showDeleteValidation = false
     @State var ingredientDeleted = false
+    @State var showCancelConfirm = false
     
     let cols = [GridItem(.flexible(), alignment: .leading), GridItem(.fixed(175),alignment: .center)]
     let formatter : NumberFormatter = {
@@ -26,6 +28,11 @@ struct DetailledStockPage: View {
                 set: { newString in
                     self.vm.allergenCategory = newString
             })
+    }
+    
+    init(ingredient : IngredientDTO){
+        ingredientOG = ingredient
+        vm = ModifIngredientVM(ingredient: ingredient)
     }
     
     var body: some View {
@@ -48,6 +55,7 @@ struct DetailledStockPage: View {
                             else{
                                 TextField("Agar Agar", text : $vm.name)
                                     .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
                                     .disabled(!editClicked)
                             }
                             if(!vm.nameValid() && editClicked){
@@ -73,6 +81,7 @@ struct DetailledStockPage: View {
                             }
                             else{
                                 TextField("Kg", text : $vm.unit).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
                                     .disabled(!editClicked)
                             }
                             if(!vm.unitValid() && editClicked){
@@ -92,6 +101,7 @@ struct DetailledStockPage: View {
                             else{
                                 TextField("11€", text : $vm.price)
                                     .textFieldStyle(.roundedBorder).cornerRadius(5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
                                     .disabled(!editClicked)
                             }
                             if(!vm.priceValid() && editClicked){
@@ -108,6 +118,7 @@ struct DetailledStockPage: View {
                         }
                         else{
                             TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
                                 .disabled(!editClicked)
                             
                         }  
@@ -132,6 +143,7 @@ struct DetailledStockPage: View {
                                 }
                                 else{
                                     TextField("Fruit à coque", text : allergenBinding).textFieldStyle(.roundedBorder).cornerRadius(5)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
                                         .disabled(!editClicked)
                                 }
                                 if(!vm.allergenCategoryValid() && editClicked){
@@ -169,18 +181,25 @@ struct DetailledStockPage: View {
                         }
                         else {
                             //Button(action : {
-                              //  vm.resetIngredient(ingredient: ingredient)
-                                //editClicked = false
+                               // showCancelConfirm = true
                             //}){
-                              //  Image(systemName: "plus").font(.system(size : 35)).rotationEffect(.degrees(-45)).foregroundColor(.gray)
-                            //}.disabled(!vm.allFieldsAreValid())
-                            //Spacer().frame(width : 40)
+                               // Image(systemName: "plus").font(.system(size : 35)).rotationEffect(.degrees(-45)).foregroundColor(.gray)
+                            //}.confirmationDialog("Attention, vos modifications ne seront pas enregistrées", isPresented: $showCancelConfirm, titleVisibility: .visible){
+                              //  Button("Ok"){
+                                 //   editClicked = false
+                                 //   print(ingredientOG.name)
+                                 //   vm.resetIngredient(ingredient: ingredientOG)
+                              //  }
+                             //   Button("Annuler", role: .cancel){ editClicked = true}
+                           // }
+                           // .disabled(!vm.allFieldsAreValid())
+                           // Spacer().frame(width : 40)
                             Button(action : {
                                 showModifConfirm = true
                             }){
                                 Image(systemName: "checkmark.circle.fill").font(.system(size : 35))
                             }.disabled(!vm.allFieldsAreValid())
-                                .confirmationDialog("Voulez-vous vraiment enregistrer vos modifications ?", isPresented: $showModifConfirm, titleVisibility: .visible){
+                                .confirmationDialog("Confirmez-vous ces modifications ?", isPresented: $showModifConfirm, titleVisibility: .visible){
                                     Button("Oui"){
                                         vm.userConfirmed()
                                         editClicked = false
@@ -192,9 +211,9 @@ struct DetailledStockPage: View {
                     Spacer()
                 }.padding(15)
             }
-            
         }
         .alert(isPresented : $showDeleteValidation) {
             Alert(title: Text("Suppression effectuée"), message: Text("Veuillez revenir à l'écran principal"))}
+        .navigationBarBackButtonHidden(editClicked)
     }
 }

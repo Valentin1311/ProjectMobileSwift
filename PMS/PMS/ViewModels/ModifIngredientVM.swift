@@ -1,8 +1,10 @@
 import Foundation
+import SwiftUI
+import FirebaseFirestoreSwift
 
 class ModifIngredientVM : ObservableObject, ingredientDelegate {
     
-    public var newIngredient : IngredientDTO
+    private var newIngredient : IngredientDTO
     private var ingredientDAO = IngredientDAO()
     
     @Published var name : String {
@@ -145,13 +147,6 @@ class ModifIngredientVM : ObservableObject, ingredientDelegate {
     }
     
     func resetIngredient(ingredient : IngredientDTO) {
-        self.name = ingredient.name
-        self.category = ingredient.category
-        self.unit = ingredient.unit
-        self.price = ingredient.price
-        self.stock = ingredient.stock
-        self.isAllergen = ingredient.isAllergen
-        self.allergenCategory = ingredient.allergenCategory
     }
     
 }

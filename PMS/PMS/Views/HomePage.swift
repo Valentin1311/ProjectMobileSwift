@@ -8,6 +8,7 @@ struct HomePage: View {
     @State private var deleteIndexSet: IndexSet?
     @State var editable: Bool
     @Binding var existingMealSelected: MealDTO?
+    @State var whealClicked = false
     
     var body: some View {
         if editable { NavigationView() { list }}
@@ -51,7 +52,20 @@ struct HomePage: View {
                 }
                 Button("Non") {}
             }
-        }.toolbar { if editable { EditButton() }}
+        }.toolbar {
+            ToolbarItem(placement: .navigationBarTrailing){
+                if editable {
+                    EditButton()
+                }
+            }
+            ToolbarItem(placement: .navigationBarLeading){
+                NavigationLink(destination : SettingsView(), isActive: $whealClicked){
+                    Button(action : { whealClicked = true}){
+                        Image(systemName: "gearshape")
+                    }
+                }
+            }
+        }
         .searchable(text: $searchText, placement: .automatic, prompt: "Rechercher une fiche par nom, catégorie...")
         .onChange(of: searchText) { searchText in
             if !searchText.isEmpty {
