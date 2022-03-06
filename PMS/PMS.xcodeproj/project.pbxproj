@@ -23,6 +23,7 @@
 		6F18EC7427D3B1B600390F1B /* DetailledSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18EC7327D3B1B600390F1B /* DetailledSettingView.swift */; };
 		6F18EC7627D3B22100390F1B /* ModifSettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18EC7527D3B22100390F1B /* ModifSettingVM.swift */; };
 		6F18EC7827D3D23C00390F1B /* EtiquettePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18EC7727D3D23C00390F1B /* EtiquettePreviewView.swift */; };
+		6F18EC7A27D4228700390F1B /* SellSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F18EC7927D4228700390F1B /* SellSheetView.swift */; };
 		6F6B72F827CED9CA00613F21 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6B72F727CED9CA00613F21 /* Category.swift */; };
 		6F6B72FA27CFDFF400613F21 /* PrintPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6B72F927CFDFF400613F21 /* PrintPreviewView.swift */; };
 		6F78F41D27D045F600CF63D3 /* IngredientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78F41C27D045F600CF63D3 /* IngredientDelegate.swift */; };
@@ -100,6 +101,7 @@
 		6F18EC7327D3B1B600390F1B /* DetailledSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailledSettingView.swift; sourceTree = "<group>"; };
 		6F18EC7527D3B22100390F1B /* ModifSettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifSettingVM.swift; sourceTree = "<group>"; };
 		6F18EC7727D3D23C00390F1B /* EtiquettePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtiquettePreviewView.swift; sourceTree = "<group>"; };
+		6F18EC7927D4228700390F1B /* SellSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellSheetView.swift; sourceTree = "<group>"; };
 		6F6B72F727CED9CA00613F21 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		6F6B72F927CFDFF400613F21 /* PrintPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintPreviewView.swift; sourceTree = "<group>"; };
 		6F78F41C27D045F600CF63D3 /* IngredientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				6F78F42827D13ECB00CF63D3 /* MealInfoPage.swift */,
 				6F18EC6927D3A6AD00390F1B /* SettingsView.swift */,
 				6F18EC7727D3D23C00390F1B /* EtiquettePreviewView.swift */,
+				6F18EC7927D4228700390F1B /* SellSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				6F18EC7827D3D23C00390F1B /* EtiquettePreviewView.swift in Sources */,
 				6FF6BF4A27C296A1002E77B5 /* IngredientDAO.swift in Sources */,
 				B7758EDB27C4DCFB0073CFA3 /* HomePageVM.swift in Sources */,
+				6F18EC7A27D4228700390F1B /* SellSheetView.swift in Sources */,
 				6F18EC7227D3ABAD00390F1B /* SettingsVM.swift in Sources */,
 				6FCD915427CD938D0045AAB7 /* NewIngredientVM.swift in Sources */,
 				6FCD915227CD8AB30045AAB7 /* NewIngredientPage.swift in Sources */,

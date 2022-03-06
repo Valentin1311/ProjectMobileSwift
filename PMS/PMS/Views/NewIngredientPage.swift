@@ -76,7 +76,7 @@ struct NewIngredientPage: View {
                                 .foregroundColor(.red)
                         }
                     }
-                    Text("Stock actuel")
+                    Text("Stock")
                     TextField("50", value : $vm.stock, formatter : formatter).textFieldStyle(.roundedBorder).cornerRadius(5)
                         .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
                     

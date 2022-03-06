@@ -14,16 +14,6 @@ struct StockPage: View {
     
     @FirestoreQuery(
     collectionPath: "Ingredients",
-    predicates: [.order(by: "stock", descending: false)]
-    ) var queryStockASC : [IngredientDTO]
-    
-    @FirestoreQuery(
-    collectionPath: "Ingredients",
-    predicates: [.order(by: "stock", descending: true)]
-    ) var queryStockDSC : [IngredientDTO]
-    
-    @FirestoreQuery(
-    collectionPath: "Ingredients",
     predicates: [.whereField("isAllergen", isEqualTo: true)]
     ) var queryAllergen : [IngredientDTO]
     
@@ -86,8 +76,8 @@ struct StockPage: View {
                 }
         }.task {
             ingredients = vm.ingredients
-            stockASC = queryStockASC
-            stockDSC = queryStockDSC
+            stockASC = vm.stockASC
+            stockDSC = vm.stockDSC
             allergUniq = queryAllergen
         }
         .searchable(text: $searchText, placement: .automatic, prompt: "Rechercher un ingrédient, une catégorie...")
@@ -98,11 +88,11 @@ struct StockPage: View {
                         $0.unit.contains(searchText) ||  $0.price.contains(searchText) ||  $0.category.contains(searchText)}
                 }
                 else if(sortedType == 1){
-                    stockASC = queryStockASC.filter { $0.name.contains(searchText) ||
+                    stockASC = vm.stockASC.filter { $0.name.contains(searchText) ||
                         $0.unit.contains(searchText) ||  $0.price.contains(searchText) ||  $0.category.contains(searchText)}
                 }
                 else if(sortedType == 2){
-                    stockDSC = queryStockDSC.filter { $0.name.contains(searchText) ||
+                    stockDSC = vm.stockDSC.filter { $0.name.contains(searchText) ||
                         $0.unit.contains(searchText) ||  $0.price.contains(searchText) ||  $0.category.contains(searchText)}
                 }
                 
@@ -113,12 +103,14 @@ struct StockPage: View {
             }
             else {
                 ingredients = vm.ingredients
-                stockASC = queryStockASC
-                stockDSC = queryStockDSC
+                stockASC = vm.stockASC
+                stockDSC = vm.stockDSC
                 allergUniq = queryAllergen
             }
         }
     }
 }
+
+
 
 

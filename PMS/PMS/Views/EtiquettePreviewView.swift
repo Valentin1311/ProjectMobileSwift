@@ -22,7 +22,7 @@ struct EtiquettePreviewView: View {
                         .stroke(.black, lineWidth: 2))
                 Spacer().frame(height : 20)
                 if(meal.hasNoIngredients){
-                    Text("Pas d'ingrédients pour ce plat").foregroundColor(.red).font(.headline)
+                    Text("Pas d'ingrédients pour ce plat").foregroundColor(.blue).font(.headline)
                     Spacer().frame(height : 20)
                 }
                 else{

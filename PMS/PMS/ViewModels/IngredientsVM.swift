@@ -25,4 +25,12 @@ class IngredientsVM : ObservableObject{
             }
         }
     }
+    
+    var stockDSC : [IngredientDTO] {
+        return self.ingredients.sorted { $0.stock > $1.stock }
+    }
+    
+    var stockASC : [IngredientDTO] {
+        return self.ingredients.sorted { $0.stock < $1.stock }
+    }
 }

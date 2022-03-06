@@ -3,6 +3,7 @@ import SwiftUI
 struct ShortIngredientView: View {
     @Binding var ingredient : IngredientDTO
     let customBlue = Color(red: 5/255, green: 105/255, blue: 164/255)
+    let customGreen = Color(red: 0/255, green: 100/255, blue: 0/255)
     
     var body: some View {
         HStack{
@@ -35,11 +36,11 @@ struct ShortIngredientView: View {
             ZStack {
                 if(ingredient.stock > 0) {
                     Circle()
-                        .strokeBorder(Color.green,lineWidth: 1)
+                        .strokeBorder(customGreen,lineWidth: 1)
                         .background(.white)
                     VStack(alignment : .center, spacing: 10){
-                        Text(String(ingredient.stock)+" "+String(ingredient.unit)).font(.system(size: 12.5, weight: .bold)).lineLimit(1).foregroundColor(.green)
-                        Text("En stock").font(.system(size: 12.5)).lineLimit(1).foregroundColor(.green)
+                        Text(String(ingredient.stock)+" "+String(ingredient.unit)).font(.system(size: 12.5, weight: .bold)).lineLimit(1).foregroundColor(customGreen)
+                        Text("En stock").font(.system(size: 12.5)).lineLimit(1).foregroundColor(customGreen)
                     }
                 }
                 else{

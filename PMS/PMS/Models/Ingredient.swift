@@ -42,11 +42,7 @@ class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
         }
     }
     
-    var stock : Double {
-        didSet{
-            delegate?.stockChanged(stock: self.stock)
-        }
-    }
+    var stock : Double
     
     var allergenCategory: String? {
         didSet {

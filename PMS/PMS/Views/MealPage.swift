@@ -10,6 +10,7 @@ struct MealPage: View {
     @State var infoClicked: Bool = false
     @State var etiquetteClicked: Bool = false
     @StateObject var vm = MealPageVM()
+    @State var showSheet = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -41,12 +42,23 @@ struct MealPage: View {
                         Spacer()
                     }
                     else {
-                        Button(action: { editClicked = true }) {
-                            Image(systemName: "pencil")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30).foregroundColor(.accentColor)
+                        HStack{
+                            Button(action: { editClicked = true }) {
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30).foregroundColor(.accentColor)
+                            }
+                            Spacer()
+                            Button(action: { showSheet = true }) {
+                                Image(systemName: "eurosign.circle")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30).foregroundColor(.accentColor)
+                            }.sheet(isPresented: $showSheet) { SellSheetView(meal : meal) }
+                            Spacer()
                         }
+                        
                     }
                 }
                 Spacer()
@@ -60,21 +72,23 @@ struct MealPage: View {
             }, isActive: $infoClicked) { EmptyView() }.navigationBarTitle(meal.name)
         }.padding(.vertical)
         .toolbar {
-            HStack {
-                Button(action: {
-                    infoClicked = true
-                }) {
-                    Image(systemName: "info.circle").imageScale(.large).foregroundColor(.accentColor)
-                }
-                Button(action: {
-                    etiquetteClicked = true
-                }) {
-                    Image(systemName: "list.bullet.rectangle").imageScale(.large).foregroundColor(.accentColor)
-                }
-                Button(action: {
-                    printClicked = true
-                }) {
-                    Image(systemName: "printer").imageScale(.large).foregroundColor(.accentColor)
+            ToolbarItem(placement :.navigationBarTrailing){
+                HStack {
+                    Button(action: {
+                        infoClicked = true
+                    }) {
+                        Image(systemName: "info.circle").imageScale(.large).foregroundColor(.accentColor)
+                    }
+                    Button(action: {
+                        etiquetteClicked = true
+                    }) {
+                        Image(systemName: "list.bullet.rectangle").imageScale(.large).foregroundColor(.accentColor)
+                    }
+                    Button(action: {
+                        printClicked = true
+                    }) {
+                        Image(systemName: "printer").imageScale(.large).foregroundColor(.accentColor)
+                    }
                 }
             }
         }

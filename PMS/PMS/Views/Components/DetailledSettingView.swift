@@ -22,9 +22,9 @@ struct DetailledSettingView: View {
                 HStack{
                     if(editClicked){
                         TextField("Ex. 12", value : $vm.value, formatter: formatter)
-                            .frame(width : 200)
-                            .textFieldStyle(.roundedBorder).cornerRadius(5)
-                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black))
+                            .padding()
+                            .frame(width : 150)
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.black, lineWidth: 2))
                             .disabled(!editClicked)
                         Button(action : {
                             vm.userConfirmed()
@@ -36,9 +36,9 @@ struct DetailledSettingView: View {
                     }
                     else{
                         TextField("Ex. 12", value : $vm.value, formatter: formatter)
-                            .frame(width : 200)
-                            .textFieldStyle(.roundedBorder).cornerRadius(5)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray))
+                            .padding()
+                            .frame(width : 150)
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 2))
                             .disabled(!editClicked)
                         Button(action : {
                             editClicked = true
