@@ -1,6 +1,6 @@
 import Foundation
 
-class IngredientQuantityDTO : IngredientDTO, Hashable {
+class IngredientQuantityDTO : IngredientDTO {
     var quantity: Int
     init(quantity: Int?, id: String?, name: String, isAllergen: Bool, category: String, price: String, unit: String, stock: Double, allergenCategory: String?) {
         self.quantity = quantity ?? 0
@@ -16,7 +16,7 @@ class IngredientQuantityDTO : IngredientDTO, Hashable {
         fatalError("init(from:) has not been implemented")
     }
     
-    func hash(into hasher: inout Hasher) {
+    override func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
     

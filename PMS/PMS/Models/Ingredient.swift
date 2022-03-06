@@ -1,6 +1,6 @@
 import Foundation
 
-class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
+class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable, Hashable {
     
     var delegate : ingredientDelegate?
    
@@ -77,5 +77,16 @@ class IngredientDTO : Identifiable, ObservableObject, Equatable, Decodable {
     static func == (lhs: IngredientDTO, rhs: IngredientDTO) -> Bool {
         return lhs.id == rhs.id && lhs.name == rhs.name && lhs.isAllergen == rhs.isAllergen && lhs.category == rhs.category
         && lhs.price == rhs.price && lhs.unit == rhs.unit && lhs.stock == rhs.stock && lhs.allergenCategory == rhs.allergenCategory
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(isAllergen)
+        hasher.combine(category)
+        hasher.combine(unit)
+        hasher.combine(price)
+        hasher.combine(stock)
+        hasher.combine(allergenCategory)
     }
 }

@@ -18,7 +18,7 @@ struct DetailledSettingView: View {
     
     var body: some View {
         VStack(alignment : .center){
-                Text(vm.name).font(.callout).multilineTextAlignment(.center)
+            Text(vm.name).font(.callout).multilineTextAlignment(.center)
                 HStack{
                     if(editClicked){
                         TextField("Ex. 12", value : $vm.value, formatter: formatter)
